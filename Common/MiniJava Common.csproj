@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{341D8D71-31F0-44EA-91C9-DDA2D5E01F5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MiniJava</RootNamespace>
+    <AssemblyName>MiniJava.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AST\AddExpressionNode.cs" />
+    <Compile Include="AST\AndExpressionNode.cs" />
+    <Compile Include="AST\ArrayAssignmentStatementNode.cs" />
+    <Compile Include="AST\ArrayLookupExpressionNode.cs" />
+    <Compile Include="AST\AssignmentStatementNode.cs" />
+    <Compile Include="AST\BaseASTNode.cs" />
+    <Compile Include="AST\BooleanConstantExpressionNode.cs" />
+    <Compile Include="AST\BooleanTypeNode.cs" />
+    <Compile Include="AST\ClassDeclListNode.cs" />
+    <Compile Include="AST\ClassDeclNode.cs" />
+    <Compile Include="AST\FieldAccessExpressionNode.cs" />
+    <Compile Include="AST\FieldAssignmentStatementNode.cs" />
+    <Compile Include="AST\InvalidExpressionNode.cs" />
+    <Compile Include="AST\ExpressionListNode.cs" />
+    <Compile Include="AST\ExpressionNode.cs" />
+    <Compile Include="AST\ExtendsNode.cs" />
+    <Compile Include="AST\IdentifierExpressionNode.cs" />
+    <Compile Include="AST\IdentifierNode.cs" />
+    <Compile Include="AST\IdentifierTypeNode.cs" />
+    <Compile Include="AST\IfStatementNode.cs" />
+    <Compile Include="AST\IntegerArrayTypeNode.cs" />
+    <Compile Include="AST\IntegerConstantExpressionNode.cs" />
+    <Compile Include="AST\IntegerTypeNode.cs" />
+    <Compile Include="AST\LengthExpressionNode.cs" />
+    <Compile Include="AST\LessThanExpressionNode.cs" />
+    <Compile Include="AST\MainClassDeclNode.cs" />
+    <Compile Include="AST\MethodCallExpressionNode.cs" />
+    <Compile Include="AST\MethodDeclListNode.cs" />
+    <Compile Include="AST\MethodDeclNode.cs" />
+    <Compile Include="AST\MultiplyExpressionNode.cs" />
+    <Compile Include="AST\NewIntegerArrayExpressionNode.cs" />
+    <Compile Include="AST\NewObjectExpressionNode.cs" />
+    <Compile Include="AST\NotExpressionNode.cs" />
+    <Compile Include="AST\ParamDeclListNode.cs" />
+    <Compile Include="AST\ParamDeclNode.cs" />
+    <Compile Include="AST\ProgramNode.cs" />
+    <Compile Include="AST\ReturnStatementNode.cs" />
+    <Compile Include="AST\StatementBlockNode.cs" />
+    <Compile Include="AST\StatementListNode.cs" />
+    <Compile Include="AST\StatementNode.cs" />
+    <Compile Include="AST\SubtractExpressionNode.cs" />
+    <Compile Include="AST\SystemOutPrintLnStatementNode.cs" />
+    <Compile Include="AST\ThisExpressionNode.cs" />
+    <Compile Include="AST\TypeNode.cs" />
+    <Compile Include="AST\VariableDeclListNode.cs" />
+    <Compile Include="AST\VariableDeclNode.cs" />
+    <Compile Include="AST\WhileStatementNode.cs" />
+    <Compile Include="ProgramError.cs" />
+    <Compile Include="Definitions\ClassDefinition.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="Definitions\FieldDefinition.cs" />
+    <Compile Include="Definitions\MethodDefinition.cs" />
+    <Compile Include="Definitions\ParameterDefinition.cs" />
+    <Compile Include="Definitions\SymbolDefinition.cs" />
+    <Compile Include="ProgramAnalysis.cs" />
+    <Compile Include="SymbolTable.cs" />
+    <Compile Include="Definitions\VariableDefinition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\ArrayType.cs" />
+    <Compile Include="Types\BooleanType.cs" />
+    <Compile Include="Types\ClassType.cs" />
+    <Compile Include="Types\InvalidType.cs" />
+    <Compile Include="Types\IntType.cs" />
+    <Compile Include="Types\BaseType.cs" />
+    <Compile Include="Visitors\BaseVisitor.cs" />
+    <Compile Include="Visitors\IVisitor.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
