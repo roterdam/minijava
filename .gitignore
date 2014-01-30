@@ -1,0 +1,9 @@
+*/Debug/*
+*/Bin/*
+*/obj/*
+Test/ASMRunner/Debug
+*.obj
+*.asm
+*.opensdf
+*.sdf
+*.suo
