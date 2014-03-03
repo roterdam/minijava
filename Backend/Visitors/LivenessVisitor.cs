@@ -31,6 +31,11 @@ namespace MiniJava.Backend.Visitors
         {
             base.Visit(node);
         }
+
+        public override void Visit(AST.ClassDeclNode node)
+        {
+            base.Visit(node);
+        }
         #endregion
 
         #region Expression
