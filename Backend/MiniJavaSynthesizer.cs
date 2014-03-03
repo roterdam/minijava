@@ -18,6 +18,9 @@ namespace MiniJava.Backend
 
         public void Synthesize(ProgramAnalysis sourceProgramAnalysis, TextWriter outputStream)
         {
+            LivenessVisitor liveness = new LivenessVisitor(sourceProgramAnalysis);
+            liveness.Visit(sourceProgramAnalysis.AST);
+
             Out = outputStream;
             GenText(".386");
             GenText(".model flat,c");
