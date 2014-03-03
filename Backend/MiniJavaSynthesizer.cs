@@ -33,7 +33,6 @@ namespace MiniJava.Backend
             SPVisitor.Visit(sourceProgramAnalysis.AST);
             CGVisitor.Visit(sourceProgramAnalysis.AST);
             GenText("end");
-
         }
     }
 }
