@@ -30,6 +30,7 @@ class test
 		c = new Car();
 		//t = c.SetDoorCount(count);
 		c.DoorCount = count;
+        System.out.println(52);
 		return c.DoorCount;
 	}
 }
