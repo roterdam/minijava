@@ -2,7 +2,9 @@ class MainClass
 {
     public static void main(String[] a)
 	{
-		System.out.println(new test().t1(26));
+		int a = 10;
+		int b = 5;
+		int c = a * b;
     }
 }
 
@@ -28,7 +30,6 @@ class test
 	{
 		int t;
 		c = new Car();
-		//t = c.SetDoorCount(count);
 		c.DoorCount = count;
         System.out.println(52);
 		return c.DoorCount;

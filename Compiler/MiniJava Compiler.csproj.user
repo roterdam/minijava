@@ -4,6 +4,6 @@
     <StartArguments>test1.java</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>test.java</StartArguments>
+    <StartArguments>..\..\..\Samples\simple.java</StartArguments>
   </PropertyGroup>
 </Project>

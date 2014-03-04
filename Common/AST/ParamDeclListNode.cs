@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace MiniJava.AST
 {
-    public class ParamDeclListNode : BaseASTNode
+    public class ParamDeclListNode : BaseASTNode, IEnumerator, IEnumerable
     {
+        private int position = -1;
         public List<ParamDeclNode> paramDeclList;
 
         public ParamDeclListNode(int lineNumber)
@@ -33,5 +35,29 @@ namespace MiniJava.AST
             return "";
         }
 
+        //IEnumerator and IEnumerable require these methods.
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        //IEnumerator
+        public bool MoveNext()
+        {
+            position++;
+            return (position < paramDeclList.Count);
+        }
+
+        //IEnumerable
+        public void Reset()
+        {
+            position = 0;
+        }
+
+        //IEnumerable
+        public object Current
+        {
+            get { return paramDeclList[position]; }
+        }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace MiniJava.AST
 {
-    public class StatementListNode : BaseASTNode
+    public class StatementListNode : BaseASTNode, IEnumerator, IEnumerable
     {
+        private int position = -1;
         public List<StatementNode> statementList;
 
         public StatementListNode(int lineNumber)
@@ -33,5 +35,29 @@ namespace MiniJava.AST
             return "";
         }
 
+        //IEnumerator and IEnumerable require these methods.
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        //IEnumerator
+        public bool MoveNext()
+        {
+            position++;
+            return (position < statementList.Count);
+        }
+
+        //IEnumerable
+        public void Reset()
+        {
+            position = 0;
+        }
+
+        //IEnumerable
+        public object Current
+        {
+            get { return statementList[position]; }
+        }
     }
 }

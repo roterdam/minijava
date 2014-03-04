@@ -8,6 +8,15 @@ namespace MiniJava.Backend.Visitors
 {
     class LivenessVisitor : BaseVisitor
     {
+        struct RW
+        {
+            List<AST.IdentifierNode> W = new List<AST.IdentifierNode>();
+            List<AST.IdentifierNode> R = new List<AST.IdentifierNode>();
+        }
+
+        private Dictionary<AST.BaseASTNode, AST.IdentifierNode> m_livenessAtNode
+            = new Dictionary<AST.BaseASTNode, AST.IdentifierNode>();
+
         public LivenessVisitor(ProgramAnalysis analysis)
             : base(analysis)
         {
@@ -20,7 +29,6 @@ namespace MiniJava.Backend.Visitors
             base.Visit(node);
         }
 
-
         #region Declarations
         public override void Visit(AST.MainClassDeclNode node)
         {
@@ -29,7 +37,23 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.MethodDeclNode node)
         {
-            base.Visit(node);
+            MethodBeingVisited = ClassBeingVisited.Methods.Lookup(node.methodName.name);
+            
+            if (node.paramDeclList != null)
+                foreach (AST.ParamDeclNode paramDecl in node.paramDeclList)
+                    paramDecl.Accept(this);
+
+            if (node.variableDeclList != null)
+                foreach (AST.VariableDeclNode variableDecl in node.variableDeclList)
+                    variableDecl.Accept(this);
+
+            if (node.statementList != null)
+            {
+                var reverseList = node.statementList.statementList;
+                reverseList.Reverse();
+                foreach (AST.StatementNode statement in reverseList)
+                    statement.Accept(this);
+            }
         }
 
         public override void Visit(AST.ClassDeclNode node)
