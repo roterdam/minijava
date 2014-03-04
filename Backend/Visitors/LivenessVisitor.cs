@@ -8,14 +8,11 @@ namespace MiniJava.Backend.Visitors
 {
     class LivenessVisitor : BaseVisitor
     {
-        struct RW
-        {
-            List<AST.IdentifierNode> W = new List<AST.IdentifierNode>();
-            List<AST.IdentifierNode> R = new List<AST.IdentifierNode>();
-        }
+        HashSet<string> m_R = new HashSet<string>();
+        HashSet<string> m_W = new HashSet<string>();
 
-        private Dictionary<AST.BaseASTNode, AST.IdentifierNode> m_livenessAtNode
-            = new Dictionary<AST.BaseASTNode, AST.IdentifierNode>();
+        private Dictionary<AST.BaseASTNode, HashSet<string>> m_livenessAtNode
+            = new Dictionary<AST.BaseASTNode, HashSet<string>>();
 
         public LivenessVisitor(ProgramAnalysis analysis)
             : base(analysis)
@@ -51,8 +48,19 @@ namespace MiniJava.Backend.Visitors
             {
                 var reverseList = node.statementList.statementList;
                 reverseList.Reverse();
+                
+                HashSet<string> afterLiveness = new HashSet<string>();
+
                 foreach (AST.StatementNode statement in reverseList)
+                {
+                    m_R.Clear();
+                    m_W.Clear();
                     statement.Accept(this);
+                    afterLiveness.ExceptWith(m_W);
+                    afterLiveness.UnionWith(m_R);
+
+                    m_livenessAtNode[statement] = new HashSet<string>(afterLiveness);
+                }
             }
         }
 
@@ -85,6 +93,8 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.MultiplyExpressionNode node)
         {
+            node.expression1.Accept(this);
+            node.expression2.Accept(this);
             base.Visit(node);
         }
 
@@ -100,6 +110,7 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.IdentifierExpressionNode node)
         {
+            m_R.Add(node.identifier.name);
             base.Visit(node);
         }
 
@@ -157,6 +168,9 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.AssignmentStatementNode node)
         {
+            m_W.Add(node.identifier.name);
+            node.expression.Accept(this);
+
             base.Visit(node);
         }
 

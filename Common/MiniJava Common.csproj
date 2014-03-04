@@ -105,6 +105,7 @@
     <Compile Include="Types\ArrayType.cs" />
     <Compile Include="Types\BooleanType.cs" />
     <Compile Include="Types\ClassType.cs" />
+    <Compile Include="Types\HashSetExtensions.cs" />
     <Compile Include="Types\InvalidType.cs" />
     <Compile Include="Types\IntType.cs" />
     <Compile Include="Types\BaseType.cs" />
