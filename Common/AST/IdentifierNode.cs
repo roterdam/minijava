@@ -25,5 +25,18 @@ namespace MiniJava.AST
             visitor.Visit(this);
         }
 
+        public override int GetHashCode()
+        {
+            int hashcode = 0;
+            foreach (char c in this.name)
+                hashcode += (int)c;
+
+            return hashcode;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.name == obj.ToString();
+        }
     }
 }

@@ -8,11 +8,11 @@ namespace MiniJava.Backend.Visitors
 {
     class LivenessVisitor : BaseVisitor
     {
-        HashSet<string> m_R = new HashSet<string>();
-        HashSet<string> m_W = new HashSet<string>();
+        HashSet<AST.IdentifierNode> m_R = new HashSet<AST.IdentifierNode>();
+        HashSet<AST.IdentifierNode> m_W = new HashSet<AST.IdentifierNode>();
 
-        private Dictionary<AST.BaseASTNode, HashSet<string>> m_livenessAtNode
-            = new Dictionary<AST.BaseASTNode, HashSet<string>>();
+        private Dictionary<AST.BaseASTNode, HashSet<AST.IdentifierNode>> m_livenessAtNode
+            = new Dictionary<AST.BaseASTNode, HashSet<AST.IdentifierNode>>();
 
         public LivenessVisitor(ProgramAnalysis analysis)
             : base(analysis)
@@ -48,8 +48,8 @@ namespace MiniJava.Backend.Visitors
             {
                 var reverseList = node.statementList.statementList;
                 reverseList.Reverse();
-                
-                HashSet<string> afterLiveness = new HashSet<string>();
+
+                HashSet<AST.IdentifierNode> afterLiveness = new HashSet<AST.IdentifierNode>();
 
                 foreach (AST.StatementNode statement in reverseList)
                 {
@@ -59,7 +59,7 @@ namespace MiniJava.Backend.Visitors
                     afterLiveness.ExceptWith(m_W);
                     afterLiveness.UnionWith(m_R);
 
-                    m_livenessAtNode[statement] = new HashSet<string>(afterLiveness);
+                    m_livenessAtNode[statement] = new HashSet<AST.IdentifierNode>(afterLiveness);
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.IdentifierExpressionNode node)
         {
-            m_R.Add(node.identifier.name);
+            m_R.Add(node.identifier);
             base.Visit(node);
         }
 
@@ -168,7 +168,7 @@ namespace MiniJava.Backend.Visitors
 
         public override void Visit(AST.AssignmentStatementNode node)
         {
-            m_W.Add(node.identifier.name);
+            m_W.Add(node.identifier);
             node.expression.Accept(this);
 
             base.Visit(node);
