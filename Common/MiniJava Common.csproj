@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\FlowGraph.cs" />
     <Compile Include="AST\AddExpressionNode.cs" />
     <Compile Include="AST\AndExpressionNode.cs" />
     <Compile Include="AST\ArrayAssignmentStatementNode.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Types\InvalidType.cs" />
     <Compile Include="Types\IntType.cs" />
     <Compile Include="Types\BaseType.cs" />
+    <Compile Include="Util\Graph.cs" />
+    <Compile Include="Util\Node.cs" />
     <Compile Include="Visitors\BaseVisitor.cs" />
     <Compile Include="Visitors\IVisitor.cs" />
   </ItemGroup>
